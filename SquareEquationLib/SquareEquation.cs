@@ -21,7 +21,7 @@ public class SquareEquation
              x1 =2*c/-b;
              array = new double[] { x1 };
         }
-        if (d>0)
+        if (d>0) 
         {
             x1 = -(b+Math.Sign(b)*Math.Sqrt(d))/2;
             x2 = c / x1;
