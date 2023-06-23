@@ -1,32 +1,36 @@
-using System;
-﻿namespace SquareEquationLib;
+namespace SquareEquationLib;
+
 public class SquareEquation
 {
     public static double[] Solve(double a, double b, double c)
     {
-        if (a==0 || new[] { a, b, c }.Any(double.IsNaN) || new[] { a, b, c }.Any(double.IsInfinity))
+        const double epsilon = 1e-9;
+        if (Math.Abs(a) < epsilon)
         {
-            throw new ArgumentException("Ошибка");
+            throw new ArgumentException("Coefficient 'a' should not be zero.");
         }
-        double x1;
-        double x2;  
-        double[] array = new double[2];
-        double d = b * b - 4 * a * c;
-        if (d < 0)
+        if (double.IsNaN(a) || double.IsInfinity(a) || double.IsNaN(b) || double.IsInfinity(b) || double.IsNaN(c) || double.IsInfinity(c))
         {
-            array = new double[0];
+            throw new ArgumentException("Coefficients should be finite numbers.");
         }
-        if (Math.Abs(d)<double.Epsilon)
+        b /= a;
+        c /= a;
+        double discriminant = b * b - 4 * c;
+
+        if (discriminant < -epsilon)
         {
-             x1 =2*c/-b;
-             array = new double[] { x1 };
+            return new double[0];
         }
-        if (d>0) 
+        else if (Math.Abs(discriminant) < epsilon)
         {
-            x1 = -(b+Math.Sign(b)*Math.Sqrt(d))/2;
-            x2 = c / x1;
-            array = new double[] { x1, x2 };
+            return new double[] { -b / 2 };
         }
-        return array;
+        else
+        {
+            double sqrtDiscriminant = Math.Sqrt(discriminant);
+            double root1 = (-b + Math.Sign(b) * sqrtDiscriminant) / 2;
+            double root2 = c / root1;
+            return new double[] { root1, root2 };
+        }
     }
 }
