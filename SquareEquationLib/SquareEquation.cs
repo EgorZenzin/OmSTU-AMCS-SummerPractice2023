@@ -1,5 +1,4 @@
 namespace SquareEquationLib;
-
 public class SquareEquation
 {
     public static double[] Solve(double a, double b, double c)
@@ -17,13 +16,13 @@ public class SquareEquation
         c /= a;
         double discriminant = b * b - 4 * c;
 
-        if (discriminant < -epsilon)
-        {
-            return new double[0];
-        }
-        else if (Math.Abs(discriminant) < epsilon)
+        if (Math.Abs(discriminant) < epsilon)
         {
             return new double[] { -b / 2 };
+        }
+        else if (discriminant < -epsilon)
+        {
+            return new double[0];
         }
         else
         {
