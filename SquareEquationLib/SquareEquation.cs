@@ -1,5 +1,5 @@
 namespace SquareEquationLib;
-public class SquareEquation
+public static class SquareEquation
 {
     public static double[] Solve(double a, double b, double c)
     {
@@ -8,14 +8,13 @@ public class SquareEquation
         {
             throw new ArgumentException("Coefficient 'a' should not be zero.");
         }
-        if (double.IsNaN(a) || double.IsInfinity(a) || double.IsNaN(b) || double.IsInfinity(b) || double.IsNaN(c) || double.IsInfinity(c))
+        if (!double.IsFinite(a) || !double.IsFinite(b) || !double.IsFinite(c))
         {
             throw new ArgumentException("Coefficients should be finite numbers.");
         }
         b /= a;
         c /= a;
         double discriminant = b * b - 4 * c;
-
         if (Math.Abs(discriminant) < epsilon)
         {
             return new double[] { -b / 2 };
