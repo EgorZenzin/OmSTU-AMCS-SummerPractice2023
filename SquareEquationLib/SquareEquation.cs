@@ -7,7 +7,7 @@ public class SquareEquation
         double eps = 1e-9;
         if (-eps < a && a < eps) throw new System.ArgumentException();
         
-        if ( double.IsNaN(a)  double.IsInfinity(a)  double.IsNaN(b)  double.IsInfinity(b)  double.IsNaN(c) || double.IsInfinity(c)) throw new System.ArgumentException();
+        if ( double.IsNaN(a) || double.IsInfinity(a) || double.IsNaN(b) || double.IsInfinity(b) || double.IsNaN(c) || double.IsInfinity(c)) throw new System.ArgumentException();
         
         b = b / a;
         c = c / a;
