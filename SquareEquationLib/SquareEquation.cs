@@ -1,4 +1,4 @@
-amespace SquareEquationLib
+namespace SquareEquationLib
 {
     public static class SquareEquation
     {
@@ -7,16 +7,19 @@ amespace SquareEquationLib
             double epsilon = double.Epsilon;
             if (Math.Abs(a) < epsilon)
             {
-                throw new ArgumentException("The coefficient 'a' should not be zero.");
+                throw new ArgumentException();
             }
+
             if (double.IsNaN(a) || double.IsInfinity(a) || double.IsNaN(b) || double.IsInfinity(b) || double.IsNaN(c) || double.IsInfinity(c))
             {
-                throw new ArgumentException("The coefficients should be finite numbers.");
+                throw new ArgumentException();
             }
+
             b /= a;
             c /= a;
             double discriminant = b * b - 4 * c;
             double[] roots;
+
             if (discriminant < -epsilon)
             {
                 roots = new double[0];
@@ -32,7 +35,8 @@ amespace SquareEquationLib
                 double root2 = c / root1;
                 roots = new double[] { root1, root2 };
             }
+
             return roots;
         }
     }
-}  
+}
