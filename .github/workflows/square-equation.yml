@@ -1,28 +1,27 @@
-  name: square equation test
 
-  on:
-    push:
-      branches: ["xUnit"]
+name: Square equation unittest and coverage
 
-  jobs:
-   build:
-      runs-on: ubuntu-latest
+on:
+  push:
+    branches: ["xUnit"]
 
-      steps:
-       - uses: actions/checkout@v3
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-       - name: Setup .NET
-         uses: actions/setup-dotnet@v2
-         with:
-           dotnet-version: 7.0.x
+    steps:
+      - uses: actions/checkout@v3
 
-       - name: Restore dependencies
-         run: dotnet restore SquareEquationLib
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: 7.0.x
 
-       - name: Build
-         run: dotnet build SquareEquationLib --no-restore /p:ContinuousIntegrationBuild=true
+      - name: Restore dependencies
+        run: dotnet restore SquareEquationLib/
 
-       - name: Test
-         run: ./SquareEquationTest ./SquareEquationLib/bin/Debug/net7.0/SquareEquationLib.dll
-       - name: Unittest and coverage
-         run: dotnet test /p:CollectCoverage=true /p:ThresholdType=line /p:Threshold=100
+      - name: Build
+        run: dotnet build SquareEquationLib/ --no-restore /p:ContinuousIntegrationBuild=true
+
+      - name: Unittest and coverage
+        run: dotnet test /p:CollectCoverage=true /p:ThresholdType=line /p:Threshold=100
