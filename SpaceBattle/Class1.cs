@@ -1,6 +1,6 @@
 ﻿namespace spacebattle
 {
-    public class Spaceship 
+    public class Spaceship
     {
         private int[]? coordinates = null;
         private int[]? speedvector = null;
@@ -18,7 +18,7 @@
 
         public void CannotAction()
         {
-            сanAction = false;
+            сanAction = false; 
         }
 
         public int[] MovingAction()
