@@ -7,7 +7,7 @@ namespace spacebattletests.StepDefinitions
     [Binding]
     public class MovingActionStepDefinitions
     {
-        Spaceship spaceship = new Spaceship();
+        Spaceship spaceship = new Spaceship(); 
         int[]? actual_coordinates;
         Exception exception = new Exception();
 
@@ -21,7 +21,7 @@ namespace spacebattletests.StepDefinitions
         public void GivenSpeedVector(int p0, int p1)
         {
             spaceship.SetSpeedVector(p0, p1);
-        }
+        } 
 
         [Given(@"космический корабль, положение в пространстве которого невозможно определить")]
         public void GivenImpossibleCoordinates()
